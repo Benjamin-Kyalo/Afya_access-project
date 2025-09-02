@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}AfyaAccess{% endblock %}</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f9fafb;
+      }
+      header {
+        background: #2f855a;
+        color: white;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header .brand {
+        font-weight: bold;
+        font-size: 20px;
+      }
+      header .user-info {
+        font-size: 14px;
+        text-align: right;
+      }
+      nav {
+        background: #edf2f7;
+        padding: 1rem;
+      }
+      main {
+        padding: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="brand">AfyaAccess</div>
+      <div class="user-info">
+        {% if user.is_authenticated %}
+        <div>{{ user.get_full_name|default:user.username }}</div>
+        <div>
+          {{ user.practitionerprofile.get_designation_display|default:"Pending"
+          }}
+        </div>
+        <div>{{ user.practitionerprofile.service_location|default:"N/A" }}</div>
+        <a href="{% url 'logout' %}" style="color: white">Logout</a>
+        {% else %}
+        <a href="{% url 'login' %}" style="color: white">Login</a>
+        {% endif %}
+      </div>
+    </header>
+
+    <nav>
+      {% if user.is_authenticated %}
+      <a href="{% url 'dashboard' %}">Dashboard</a>
+      {% endif %}
+    </nav>
+
+    <main>{% block content %} {% endblock %}</main>
+  </body>
+</html>

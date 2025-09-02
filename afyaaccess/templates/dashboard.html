@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block title %}Dashboard — AfyaAccess{% endblock %}
+{% block content %}
+<h2>Welcome back, {{ user.get_full_name|default:user.username }}</h2>
+<p>
+  Designation: {{ user.practitionerprofile.get_designation_display|default:"N/A"
+  }}
+</p>
+<p>
+  Service Location: {{ user.practitionerprofile.service_location|default:"N/A"
+  }}
+</p>
+
+<hr />
+
+<h3>Next Steps</h3>
+<ul>
+  <li>View assigned patients (future feature)</li>
+  <li>Book consultations (future feature)</li>
+  <li>Update your profile</li>
+</ul>
+{% endblock %}

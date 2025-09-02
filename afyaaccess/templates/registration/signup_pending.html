@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block title %}Pending approval{% endblock %} {%
+block content %}
+<div style="display: grid; place-items: center; min-height: 60vh">
+  <div
+    style="
+      width: 560px;
+      text-align: center;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(2, 6, 23, 0.06);
+    "
+  >
+    <h2>Thanks — your account is pending approval</h2>
+    <p style="color: #6b7280">
+      You’ll receive an email once an administrator reviews and activates your
+      account.
+    </p>
+    <p><a href="{% url 'login' %}">Back to login</a></p>
+  </div>
+</div>
+{% endblock %}
